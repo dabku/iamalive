@@ -1,0 +1,8 @@
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand" href="#">{{title}}</span>
+    <button *ngIf="auth.currentUser" (click)="logout()" class="navbar-right btn btn-primary">logout</button>
+</nav>
+<div class="float-right">
+<app-connectionstate></app-connectionstate>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,206 @@
+{
+  "admin_credentials": {
+
+                    "password": "password_admin",
+                    "user": "admin"
+
+  },
+  "test_add_properties": {
+    "1": {
+      "in": {
+        "url": "/device/rPi2/details",
+        "data": {
+          "others": {
+            "temperature": {
+              "value": "333"
+            }
+          }
+        }
+      },
+      "out": {
+        "code": 200
+      }
+    },
+    "2": {
+      "in": {
+        "url": "/device/rPi2/details",
+        "data": {
+          "others_new": {
+            "temperature": {
+              "value": "333"
+            }
+          }
+        }
+      },
+      "out": {
+        "code": 200
+      }
+    },
+    "3": {
+      "in": {
+        "url": "/device/rPi2notindatabase/details",
+        "data": {
+          "others_new": {
+            "temperature": {
+              "value": "333"
+            }
+          }
+        }
+      },
+      "out": {
+        "code": 410
+      }
+    }
+  },
+  "test_extract_properties_from_dict": {
+    "1": {
+      "in": {
+        "storage": {
+          "hdd1": {
+            "value": 98.1,
+            "timestamp": 123,
+            "threshold": 75.0
+          },
+          "hdd2": {
+            "value": 22.1,
+            "timestamp": 124,
+            "threshold": 75.0
+          }
+        },
+        "others": {
+          "temperature": {
+            "value": 50.1,
+            "timestamp": 125,
+            "threshold": 100
+          }
+        },
+        "empty": {
+          "empty": {
+          },
+          "empty2": {
+          }
+        }
+      },
+      "out": [
+        [
+          [
+            "storage",
+            "hdd1"
+          ],
+          {
+            "value": 98.1,
+            "timestamp": 123,
+            "threshold": 75.0
+          }
+        ],
+        [
+          [
+            "storage",
+            "hdd2"
+          ],
+          {
+            "value": 22.1,
+            "timestamp": 124,
+            "threshold": 75.0
+          }
+        ],
+        [
+          [
+            "others",
+            "temperature"
+          ],
+          {
+            "value": 50.1,
+            "timestamp": 125,
+            "threshold": 100
+          }
+        ]
+      ]
+    },
+    "2": {
+      "in": {
+        "storage": {
+          "hdd1": {
+            "value": 98.1,
+            "timestamp": 123,
+            "threshold": 75.0
+          },
+          "hdd2": {
+            "value": 22.1,
+            "timestamp": 124,
+            "threshold": 75.0
+          }
+        },
+        "others": {
+          "temperature": {
+            "value": 50.1,
+            "timestamp": 125,
+            "threshold": 100
+          },
+          "programs": {
+            "other_programs": {
+              "deeper_programs": {
+                "even_deeper": {
+                  "value": "OK",
+                  "timestamp": 127
+                }
+              }
+            }
+          }
+        },
+        "empty": {
+          "empty": {},
+          "empty2": {}
+        }
+      },
+      "out": [
+        [
+          [
+            "storage",
+            "hdd1"
+          ],
+          {
+            "value": 98.1,
+            "timestamp": 123,
+            "threshold": 75.0
+          }
+        ],
+        [
+          [
+            "storage",
+            "hdd2"
+          ],
+          {
+            "value": 22.1,
+            "timestamp": 124,
+            "threshold": 75.0
+          }
+        ],
+        [
+          [
+            "others",
+            "temperature"
+          ],
+          {
+            "value": 50.1,
+            "timestamp": 125,
+            "threshold": 100
+          }
+        ],
+        [
+          [
+            "others",
+            "programs",
+            "other_programs",
+            "deeper_programs",
+            "even_deeper"
+          ],
+          {
+            "value": "OK",
+            "timestamp": 127
+          }
+        ]
+      ]
+    }
+  }
+}

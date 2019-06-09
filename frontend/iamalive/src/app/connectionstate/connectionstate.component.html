@@ -1,0 +1,6 @@
+<div *ngIf="message" class="container mt-3">
+<small [ngClass]="message === State.OK ? 'alert alert-light' : 'alert alert-danger'">
+  {{ message }}
+</small>
+</div>
+

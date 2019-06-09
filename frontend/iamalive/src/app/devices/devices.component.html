@@ -1,0 +1,50 @@
+<div *ngIf="devices">
+  <div class="container mt-3">
+    <div class="row">
+
+      <div class="col-5">
+        <ul class="devices">
+
+          <a *ngFor="let device of devices" [class.selected]="device === selectedDevice" (click)="onSelect(device)"
+            class="list-group-item-hover list-group-item d-flex justify-content-between  align-items-center"
+            [ngClass]="selectedDevice===device ? 'active' : ''">
+            <div style="width:100%">
+              <div>
+
+                {{device.name}}
+
+                <div class="float-right badge badge-pill m-2" [ngClass]="device.getStatus() == 'OK' ? 'badge-success' : 
+            (device.getStatus().includes('TIMEOUT') ? 'badge-secondary' :
+            (device.getStatus().includes('ERROR') ?  'badge-danger' : 'badge-warning'))">
+                  {{ device.getStatus() }}
+                </div>
+              </div>
+              <div>
+                <small>updated {{ device.status.timestamp* 1000 | date:'dd/MM/yyyy hh:mmaaa'}}</small>
+              </div>
+            </div>
+
+            <div class='float-right'>
+              <div style="width:100%">
+                <div class='badge badge-pill badge-success' data-toggle="tooltip" data-placement="right" title="OK"
+                  [ngClass]="device.propertyDetails.ok===0 ? 'invisible' : ''">{{device.propertyDetails.ok}}</div>
+                <br>
+                <div class='badge badge-pill badge-danger' data-toggle="tooltip" data-placement="right"
+                  title="Threshold excedeed" [ngClass]="device.propertyDetails.threshold===0 ? 'invisible' : ''">
+                  {{device.propertyDetails.threshold}}</div>
+                <br>
+                <div class='badge badge-pill badge-secondary' data-toggle="tooltip" data-placement="right"
+                  title="Timeout" [ngClass]="device.propertyDetails.timeout===0 ? 'invisible' : ''">
+                  {{device.propertyDetails.timeout}}</div>
+              </div>
+            </div>
+          </a>
+        </ul>
+      </div>
+
+      <div class="col">
+        <app-device-detail [device]="selectedDevice"></app-device-detail>
+      </div>
+    </div>
+  </div>
+</div>

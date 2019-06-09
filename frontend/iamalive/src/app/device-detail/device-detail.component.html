@@ -1,0 +1,27 @@
+
+<div *ngIf="device">
+  <div class="card" style="width: 100%;">
+    <div class="card-body">
+      <div>
+        <h5>
+      <span class="card-title">{{device.name}}</span>
+      <button (click)="switchEditMode()" class="btn btn-light float-right">Edit</button>
+    </h5>
+    </div>
+      <h6 class="card-subtitle mb-2">{{device.description}}</h6>
+      <div class="list-group">
+        <span  class="list-group-item" 
+        [ngClass]="property.state.includes('TIMEOUT') ? 'list-group-item-secondary' :
+        (property.state.includes('THRESHOLD') ? 'list-group-item-danger' : 'list-group-item-success')"
+        *ngFor="let property of device.properties">
+            <div>{{ property.getPath()}}</div>
+            <div>value: {{ property.value.value}}</div>
+            <div><small>threshold: {{ property.value.threshold}}</small></div>
+          <small>updated {{ property.value.timestamp* 1000 | date:'dd/MM/yyyy hh:mmaaa'}}</small>
+          <br><br>
+        </span>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
