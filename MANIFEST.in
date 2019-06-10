@@ -1,0 +1,1 @@
+recursive-include iamalive/web/templates *.html
