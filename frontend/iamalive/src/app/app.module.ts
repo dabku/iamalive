@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, InjectionToken } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -11,6 +11,7 @@ import { ConnectionstateComponent } from './connectionstate/connectionstate.comp
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { HttpInterceptorService } from './interceptors/httpheaderinterceptor';
 import { ApiUrlInterceptor, API_URL } from './interceptors/apiurlinterceptor';
+import { ErrorInterceptor } from './interceptors/httperrorinterceptor';
 
 import {environment } from '../environments/environment';
 
@@ -34,6 +35,7 @@ import {environment } from '../environments/environment';
     {provide: API_URL, useValue: environment.api_url},
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ApiUrlInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]
 })

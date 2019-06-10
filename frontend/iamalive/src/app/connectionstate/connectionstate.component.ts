@@ -13,16 +13,16 @@ import { ConnectionstateService, IPongMessage } from '../services/connectionstat
 
 
 export class ConnectionstateComponent implements OnInit, OnDestroy {
-  public message: State;
-  State = State;
+  public message: eState;
+  State = eState;
   constructor(public connectionstateService: ConnectionstateService) { }
   private interval;
 
   ngOnInit() {
     this.getConnectionState();
     this.interval = setInterval(() => {
-    this.getConnectionState();
-  }, 5000);
+      this.getConnectionState();
+    }, 5000);
   }
 
   ngOnDestroy() {
@@ -36,20 +36,18 @@ export class ConnectionstateComponent implements OnInit, OnDestroy {
   }
 
 
-  postprocess(new_data: IPongMessage): void
-  {
-     if (new_data.message === 'pong')
-    {
-      this.message = State.OK;
+  postprocess(new_data: IPongMessage): void {
+    if (new_data.message === 'pong') {
+      this.message = this.State.OK;
     } else {
-      this.message = State.ERROR;
+      this.message = this.State.ERROR;
     }
 
   }
 
 }
 
-export enum State{
+export enum eState {
   OK = 'Connection OK',
   ERROR = 'Connection Failed'
 }

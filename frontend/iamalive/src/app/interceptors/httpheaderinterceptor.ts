@@ -10,6 +10,8 @@ export class HttpInterceptorService implements HttpInterceptor {
     if (token) {
         request = request.clone({headers: request.headers.set('Authorization', 'Bearer ' + token)});
     }
+    request = request.clone({headers: request.headers.set('Access-Control-Allow-Origin', '*' )});
+    request = request.clone({headers: request.headers.set('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT' )});
     return next.handle(request);
   }
 }
