@@ -24,10 +24,8 @@ class DevelopmentFlaskConfig(FlaskBaseConfig):
     DEBUG = True
 
 
-
 class TestsFlaskConfig(FlaskBaseConfig):
     DEBUG = True
-
 
 
 class ProductionFlaskConfig(FlaskBaseConfig):
@@ -37,7 +35,6 @@ class ProductionFlaskConfig(FlaskBaseConfig):
 class DockerDemoFlaskConfig(FlaskBaseConfig):
     DEBUG = True
     SOCKET = '0.0.0.0'
-
 
 
 class DbBaseConfig:
@@ -78,25 +75,25 @@ class ProductionDbConfig:
     pass
 
 
-def getFlaskConfig(enviroment):
-    if ENV.PROD is ENV(enviroment) or ENV.DEMO is ENV(enviroment):
+def get_flask_config(environment):
+    if ENV.PROD is ENV(environment) or ENV.DEMO is ENV(environment):
         return ProductionFlaskConfig
-    if ENV.TEST is ENV(enviroment):
+    if ENV.TEST is ENV(environment):
         return TestsFlaskConfig
-    if ENV.DEV is ENV(enviroment):
+    if ENV.DEV is ENV(environment):
         return DevelopmentFlaskConfig
-    if ENV.DEMO is ENV(enviroment):
+    if ENV.DEMO is ENV(environment):
         return DockerDemoFlaskConfig
     return ProductionFlaskConfig
 
 
-def getDbConfig(enviroment):
-    if ENV.PROD is ENV(enviroment):
+def get_db_config(environment):
+    if ENV.PROD is ENV(environment):
         return DevelopmentDbConfig
-    if ENV.TEST is ENV(enviroment):
+    if ENV.TEST is ENV(environment):
         return TestsFlaskConfig
-    if ENV.DEV is ENV(enviroment):
+    if ENV.DEV is ENV(environment):
         return DevelopmentDbConfig
-    if ENV.DEMO is ENV(enviroment):
+    if ENV.DEMO is ENV(environment):
         return DockerDemoDbConfig
     return ProductionDbConfig

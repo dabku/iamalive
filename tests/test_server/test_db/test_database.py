@@ -85,9 +85,7 @@ class TestDbModifiers(TestBase):
         self.assertEqual(len1, len2)
 
     def test_set_device_details(self):
-        result = self.db.set_device_details('rPi2', {'storage':
-                                                         {'hdd1':
-                                                              {'value': 100}}})
+        result = self.db.set_device_details('rPi2', {'storage': {'hdd1': {'value': 100}}})
         self.assertIsNone(result)
         properties = self.db.get_device_details('rPi2')
         self.assertEqual(properties['storage']['hdd1']['value'], 100)
@@ -102,9 +100,7 @@ class TestDbModifiers(TestBase):
 
     def test_set_device_details_not_exist(self):
         self.assertRaises(IAADatabase.NotInDatabase, self.db.set_device_details,
-                          'rPi2doesnotexist', {'storage':
-                                                   {'hdd1':
-                                                        {'value': 100}}})
+                          'rPi2doesnotexist', {'storage': {'hdd1': {'value': 100}}})
 
     def test_get_token(self):
         current_token = self.db.get_device('rPi2', restricted_fields=False)['token_data']['token']

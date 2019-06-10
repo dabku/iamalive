@@ -1,6 +1,6 @@
 import sys
 from iamalive import create_app
-from iamalive.config.config import getFlaskConfig, getDbConfig
+from iamalive.config.config import get_flask_config, get_db_config
 
 if __name__ == '__main__':
     try:
@@ -13,8 +13,8 @@ if __name__ == '__main__':
     except IndexError:
         env_db = env_flask
 
-    dbconf = getDbConfig(env_db)
-    flaskconf = getFlaskConfig(env_flask)
+    dbconf = get_db_config(env_db)
+    flaskconf = get_flask_config(env_flask)
 
     app = create_app(flask_config=flaskconf, db_config=dbconf)
     app.run(host=flaskconf.SOCKET)

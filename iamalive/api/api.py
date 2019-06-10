@@ -102,7 +102,7 @@ class Device(Resource):
             db_con.add_device(device_id, data)
         except db_con.DuplicatedResource:
             raise ResourceAlreadyInDatabase
-        except db_con.InvalidData as e:
+        except db_con.InvalidData:
             raise InvalidRequest('test')
         return {device_id: ''}
 
@@ -115,7 +115,6 @@ class DeviceList(Resource):
         for item in d:
             del item['password']
             del item['token_data']['token']
-            # todo add flatten parameter
             if flatten:
                 item['properties'] = extract_properties_from_dict(item['properties'])
         return [item for item in d]
