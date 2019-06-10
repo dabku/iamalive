@@ -5,8 +5,7 @@
 ## Summary
 Simple tool to monitor scripts/components of the various devices I am running. 
 Created with intention of deploying it on multiple 
-[ESP8266](https://docs.micropython.org/en/latest/esp8266/quickref.html) running  
-[MicroPython](https://micropython.org/).
+[ESP8266](https://docs.micropython.org/en/latest/esp8266/quickref.html) running [MicroPython](https://micropython.org/).
 
 ## Technologies
 
