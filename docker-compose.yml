@@ -3,7 +3,7 @@ version: '3'
 services:
     db:
         image: mongo:latest
-        container_name: iia_mongodb
+        container_name: iaa_mongodb
     api:
         build: '.'
         ports:

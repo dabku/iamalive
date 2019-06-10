@@ -55,7 +55,7 @@ class DevelopmentDbConfig:
 
 
 class DockerDemoDbConfig:
-    db_host = 'iia_mongodb'
+    db_host = 'iaa_mongodb'
     db_name = 'iamalive_demo'
 
     class Data:
