@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+    db:
+        image: mongo:latest
+        container_name: iia_mongodb
+    api:
+        build: '.'
+        ports:
+            - "5000:5000"
+    web:
+        build: 'frontend/iamalive'
+        ports:
+            - "80:80"

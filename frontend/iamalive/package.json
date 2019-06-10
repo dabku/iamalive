@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build_dev": "ng build -c dev",
+    "build_docker": "ng build -c docker",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

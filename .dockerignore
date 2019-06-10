@@ -1,0 +1,8 @@
+.git/
+.idea/
+build/
+dist/
+frontend/
+htmlcov/
+tests/
+venv/

@@ -61,6 +61,15 @@
                 }
               ]
 
+            },
+            "docker": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.docker.ts"
+                }
+              ]
+
             }
           }
         },
@@ -75,6 +84,9 @@
             },
             "dev": {
               "browserTarget": "iamalive:build:dev"
+            },
+            "docker": {
+              "browserTarget": "iamalive:build:docker"
             }
           }
         },
