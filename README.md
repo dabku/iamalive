@@ -1,6 +1,6 @@
 # iamalive [![Build Status](https://travis-ci.org/dabku/iamalive.svg?branch=master)](https://travis-ci.org/dabku/iamalive)
 
-![](docs/img/front.png)
+![](docs/img/front.PNG)
 
 ## Summary
 Simple tool to monitor scripts/components of the various devices I am running. 
