@@ -17,4 +17,4 @@ if __name__ == '__main__':
     flaskconf = getFlaskConfig(env_flask)
 
     app = create_app(flask_config=flaskconf, db_config=dbconf)
-    app.run()
+    app.run(host=flaskconf.SOCKET)

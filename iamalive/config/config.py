@@ -17,18 +17,27 @@ class ENV(Enum):
 
 class FlaskBaseConfig:
     DEBUG = False
+    SOCKET = '127.0.0.1'
 
 
 class DevelopmentFlaskConfig(FlaskBaseConfig):
     DEBUG = True
 
 
+
 class TestsFlaskConfig(FlaskBaseConfig):
     DEBUG = True
 
 
+
 class ProductionFlaskConfig(FlaskBaseConfig):
-    pass
+    SOCKET = '0.0.0.0'
+
+
+class DockerDemoFlaskConfig(FlaskBaseConfig):
+    DEBUG = True
+    SOCKET = '0.0.0.0'
+
 
 
 class DbBaseConfig:
@@ -45,9 +54,9 @@ class DevelopmentDbConfig:
         update_tables = False
 
 
-class DemoDbConfig:
-    db_host = 'localhost'
-    db_name = 'iamalive_dev'
+class DockerDemoDbConfig:
+    db_host = 'iia_mongodb'
+    db_name = 'iamalive_demo'
 
     class Data:
         data_file = dev_data
@@ -76,6 +85,8 @@ def getFlaskConfig(enviroment):
         return TestsFlaskConfig
     if ENV.DEV is ENV(enviroment):
         return DevelopmentFlaskConfig
+    if ENV.DEMO is ENV(enviroment):
+        return DockerDemoFlaskConfig
     return ProductionFlaskConfig
 
 
@@ -87,5 +98,5 @@ def getDbConfig(enviroment):
     if ENV.DEV is ENV(enviroment):
         return DevelopmentDbConfig
     if ENV.DEMO is ENV(enviroment):
-        return DemoDbConfig
+        return DockerDemoDbConfig
     return ProductionDbConfig
