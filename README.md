@@ -1,4 +1,4 @@
-# iamalive
+# iamalive [![Build Status](https://travis-ci.org/dabku/iamalive.svg?branch=master)](https://travis-ci.org/dabku/iamalive)
 
 ![](docs/img/front.png)
 
