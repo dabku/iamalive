@@ -109,6 +109,12 @@ class TestDbModifiers(TestBase):
         self.assertNotEqual(current_token, new_token)
         self.assertGreater(len(result), 5)
 
+    def test_get_token_admin(self):
+        token1 = self.db.get_token_admin('admin')
+        token2 = self.db.get_token_admin('admin')
+        self.assertNotEqual(token1, token2)
+        self.assertGreater(len(token2), 5)
+
     def test_get_token_and_authorize(self):
         token = self.db.get_token_device('rPi2')
         result = self.db.is_authorized('rPi2', token=token)
