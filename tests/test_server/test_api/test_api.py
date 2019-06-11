@@ -141,6 +141,16 @@ class TestApiFunctionalAdmin(TestApi):
                 'data': {**test_case['in']['data']}}, headers=self.headers['admin_bearer'])
             self.assertEqual(resp.status_code, test_case['out']['code'])
 
+    def test_add_status_admin(self):
+        resp = self.client.post(path='/api/v1/device/rPi2/status', content_type='application/json', json={
+                'data': {'value': 'OK'}}, headers=self.headers['admin_bearer'])
+        self.assertEqual(resp.status_code, 200)
+
+    def test_get_status_admin(self):
+        resp = self.client.get(path='/api/v1/device/rPi2/status', headers=self.headers['admin_bearer'])
+        self.assertEqual(resp.status_code, 200)
+        self.assertGreater(len(resp.json), 1)
+
 
 class TestApiFunctionalsDevice(TestApi):
     def test_get_device_deviceuser(self):

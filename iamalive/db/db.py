@@ -141,6 +141,25 @@ class IAADatabase:
         if not result:
             raise IAADatabase.QueryNotAcknowledgedByServer
 
+    def get_device_status(self, device_id):
+        return self.get_device(device_id, restricted_fields=False)['status']
+
+    def set_device_status(self,device_id, status):
+        current_status = self.get_device(device_id, restricted_fields=False)['status']
+        if 'timestamp' not in status:
+            status['timestamp'] = int(time())
+        for item in status:
+            try:
+                current_status[item] = status[item]
+            except KeyError:
+                raise IAADatabase.InvalidData
+
+        result = self._replace_in_one('devices', db_filter={'name': device_id}, new_data={'status': current_status})
+
+        if not result:
+            raise IAADatabase.QueryNotAcknowledgedByServer
+
+
     def get_device_details(self, device_id):
         return self.get_device(device_id, restricted_fields=False)['properties']
 

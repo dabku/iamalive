@@ -160,6 +160,28 @@ class DeviceToken(Resource):
         return {device_id: 'OK'}
 
 
+class DeviceStatus(Resource):
+    @myauth.login_required
+    def get(self, device_id):
+        try:
+            status = db_con.get_device_status(device_id)
+        except db_con.NotInDatabase:
+            raise ResourceNotFound
+        return status
+
+    @myauth.login_required
+    def post(self, device_id):
+        try:
+            data = json.loads(request.data)
+        except KeyError:
+            data = {}
+        try:
+            db_con.set_device_status(device_id, data)
+        except db_con.NotInDatabase:
+            raise ResourceNotFound
+        return {device_id: 'OK'}
+
+
 class AuthenticateUser(Resource):
     def get(self):
         try:

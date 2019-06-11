@@ -55,7 +55,7 @@ data = {
                 "expiry": 1234
             },
             "status": {
-                "value": "OK",
+                "value": "OK_script",
                 "timestamp": 123,
                 "minimum_update_rate": 86400
             },

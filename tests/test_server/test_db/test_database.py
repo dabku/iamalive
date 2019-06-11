@@ -62,6 +62,12 @@ class TestDb(TestBase):
         result = self.db.is_authorized_admin('admin', password='invalid_password')
         self.assertFalse(result)
 
+    def test_get_status(self):
+        result = self.db.get_device_status('script')
+        self.assertEqual(result['value'], 'OK_script')
+        result = self.db.is_authorized_admin('admin', password='invalid_password')
+        self.assertFalse(result)
+
 
 class TestDbModifiers(TestBase):
 
@@ -119,3 +125,11 @@ class TestDbModifiers(TestBase):
         token = self.db.get_token_device('rPi2')
         result = self.db.is_authorized('rPi2', token=token)
         self.assertTrue(result)
+
+    def test_set_status(self):
+        result1 = self.db.get_device_status('script')
+        self.assertEqual(result1['value'], 'OK_script')
+        self.db.set_device_status('script', {'value': 'NOT_OK_script'})
+        result2 = self.db.get_device_status('script')
+        self.assertEqual(result2['value'], 'NOT_OK_script')
+        self.assertNotEqual(result1['timestamp'], result2['timestamp'])
