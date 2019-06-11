@@ -28,4 +28,4 @@ Created with intention of deploying it on multiple
 - JWT (when available in micro python)
 - Historical logs (Maybe [InfluxDB](https://www.influxdata.com/products/influxdb-overview/))
 - Notifications (re-use [my Discord bot](https://github.com/dabku/FeedPi/blob/master/libs/discordbot.py) or emails )
-- Edit/delete- full data manageemnt from frontend
+- Edit/delete- full data management from frontend

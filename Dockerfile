@@ -5,7 +5,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY iamalive/ iamalive/
-COPY setup.py .
+COPY MANIFEST.in setup.py /.
 
 RUN [ "python", "setup.py", "install" ]
 
