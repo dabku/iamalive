@@ -18,7 +18,7 @@ Created with intention of deploying it on multiple
 - clone repository
 - install docker
 - run ``docker-compose up``
-- type in 127.0.0.1 in your web browser
+- type in 127.0.0.1 in your web browser, login with admin:password
 
 [Client Example](client_example/client_example.py) is available to go through the whole process of adding new device
 and updating it's properties.
@@ -52,5 +52,5 @@ List of the items that may be needed in the future
 - Historical logs (Maybe [InfluxDB](https://www.influxdata.com/products/influxdb-overview/))
 - Notifications (re-use [my Discord bot](https://github.com/dabku/FeedPi/blob/master/libs/discordbot.py) or emails )
 - Edit/delete- full data management from frontend
-- Allow devices to check status/properties of all the other devices
+- Allow devices to check status/properties of all the other devices through web sockets
 - Run API on proper server, probably nginx
